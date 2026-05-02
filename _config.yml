@@ -1,5 +1,5 @@
 title: "Mozzart Games Store"
-description: "Nasze projekty są drukowane i wysyłane prosto z Polski. Szybka dostawa, lokalna jakość."
+description: "Nasze projekty są drukowane i wysyłane prosto z Polski."
 theme: minima
 plugins:
   - jekyll-feed
