@@ -4,13 +4,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mozzart Games Admin</title>
-  <!-- Skrypt logowania (TEGO BRAKOWAŁO) -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  <!-- Skrypt CMS -->
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  <!-- Link do konfiguracji -->
+  <!-- Link do konfiguracji zostaje w head -->
   <link href="config.yml" type="text/yaml" rel="cms-config-url">
 </head>
 <body>
+  <!-- Skrypty przenosimy tutaj, na sam początek body -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 </body>
 </html>
