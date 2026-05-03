@@ -1,10 +1,7 @@
 backend:
-  name: github
+  name: git-gateway # Zmiana z 'github' na 'git-gateway'
   repo: mozzart-games/mozzartgames.github.io
   branch: main
-  # base_url musi wskazywać na Netlify, by obsłużyć OAuth
-  base_url: https://mozzartstore.netlify.app
-  site_domain: mozzart-games.github.io
 
 # Ustawienia Identity
 publish_mode: editorial_workflow
