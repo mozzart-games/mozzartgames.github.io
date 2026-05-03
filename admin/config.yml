@@ -2,7 +2,8 @@ backend:
   name: github
   repo: mozzart-games/mozzartgames.github.io
   branch: main
-  site_domain: mozzartstore.netlify.app # To jest Twoja nowa nazwa z obrazka image_e18a67.png
+  base_url: https://mozzartstore.netlify.app
+  site_domain: mozzart-games.github.io
 
 media_folder: "assets/images" # Tu będą trafiać zdjęcia Twojego merchu
 public_folder: "/assets/images"
