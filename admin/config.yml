@@ -2,8 +2,8 @@ backend:
   name: github
   repo: mozzart-games/mozzartgames.github.io
   branch: main
+  # To przekieruje logowanie do Twojego działającego panelu na Netlify:
   base_url: https://mozzartstore.netlify.app
-  site_domain: mozzart-games.github.io
 
 media_folder: "assets/images" # Tu będą trafiać zdjęcia Twojego merchu
 public_folder: "/assets/images"
