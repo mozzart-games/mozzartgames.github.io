@@ -1,18 +1,18 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mozzart Games Admin</title>
-  <!-- Skrypt Netlify Identity musi być pierwszy -->
+  <!-- 1. Ładujemy widget tożsamości Netlify -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <!-- Skrypt CMS -->
+  <!-- 2. Skrypt CMS (Decap) -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 
   <script>
-    // Automatyczne przekierowanie po zalogowaniu
+    // 3. To sprawi, że po kliknięciu zaproszenia w mailu zostaniesz zalogowany
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("init", user => {
         if (!user) {
