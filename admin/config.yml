@@ -3,6 +3,7 @@ backend:
   repo: mozzart-games/mozzartgames.github.io
   branch: main
 
+# Folder na zdjęcia
 media_folder: "images"
 public_folder: "/images"
 
