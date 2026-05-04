@@ -2,7 +2,7 @@ backend:
   name: github
   repo: mozzart-games/mozzartgames.github.io
   branch: main
-publish_mode: editorial_workflow
+
 media_folder: "images"
 public_folder: "/images"
 
