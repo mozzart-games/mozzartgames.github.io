@@ -4,28 +4,30 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mozzart Games Admin</title>
-  <!-- Skrypt Netlify Identity -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <!-- Skrypt CMS (Decap) -->
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-
   <script>
-    // Łączymy GitHub Pages z Netlify Identity
+    // TO JEST KLUCZOWE: Mówimy CMS-owi, że ma szukać Identity na Netlify, a nie na GitHubie
+    window.CMS_API_CONFIG = {
+      gatewayUrl: 'https://mozzartgames.netlify.app/.netlify/identity'
+    };
+
+    // Ustawiamy SiteID dla widgetu logowania
     if (window.netlifyIdentity) {
-      // Poniższa linia rozwiązuje błąd z Twojego zdjęcia:
       window.netlifyIdentity.on("init", () => {
         if (!window.localStorage.getItem("netlifySiteId")) {
           window.localStorage.setItem("netlifySiteId", "mozzartgames.netlify.app");
         }
       });
-
-      // Przekierowanie po zalogowaniu
+      
       window.netlifyIdentity.on("login", () => {
         document.location.href = "/admin/";
       });
     }
   </script>
+
+  <!-- Skrypt CMS ładujemy NA KOŃCU, po ustawieniu konfiguracji powyżej -->
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 </body>
 </html>
