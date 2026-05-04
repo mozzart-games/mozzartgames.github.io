@@ -1,33 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html lang="pl">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mozzart Games Admin</title>
+
+  <!-- 1. Ładujemy widget Netlify Identity do logowania -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+  <script>
+    /** 
+     * 2. KONFIGURACJA DLA GITHUB PAGES
+     * Ponieważ Twoja strona jest na GitHubie, a CMS na Netlify, 
+     * musimy wymusić na skryptach, aby szukały ustawień pod właściwym adresem.
+     */
+    
+    // Podaj tutaj swoją nazwę strony z Netlify (widoczną na image_4ab35c.png)
+    const NETLIFY_SITE_URL = "mozzartgames.netlify.app";
+
+    // Ustawiamy SiteID w pamięci przeglądarki, aby widget Identity wiedział gdzie się łączyć
+    window.localStorage.setItem('netlifySiteId', NETLIFY_SITE_URL);
+
+    // Konfigurujemy API CMS-a, aby zapytania o ustawienia nie kończyły się błędem 404 (image_495277.png)
+    window.CMS_API_CONFIG = {
+      gatewayUrl: `https://${NETLIFY_SITE_URL}/.netlify/identity`
+    };
+  </script>
 </head>
 <body>
-  <script>
-    // TO JEST KLUCZOWE: Mówimy CMS-owi, że ma szukać Identity na Netlify, a nie na GitHubie
-    window.CMS_API_CONFIG = {
-      gatewayUrl: 'https://mozzartgames.netlify.app/.netlify/identity'
-    };
+  <!-- 3. Ładujemy główny skrypt panelu Decap CMS -->
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 
-    // Ustawiamy SiteID dla widgetu logowania
+  <script>
+    /**
+     * 4. OBSŁUGA LOGOWANIA
+     * Ten skrypt sprawi, że po kliknięciu "Login" lub w link w mailu potwierdzającym,
+     * strona automatycznie przeładuje panel administracyjny.
+     */
     if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("init", () => {
-        if (!window.localStorage.getItem("netlifySiteId")) {
-          window.localStorage.setItem("netlifySiteId", "mozzartgames.netlify.app");
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
         }
-      });
-      
-      window.netlifyIdentity.on("login", () => {
-        document.location.href = "/admin/";
       });
     }
   </script>
-
-  <!-- Skrypt CMS ładujemy NA KOŃCU, po ustawieniu konfiguracji powyżej -->
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 </body>
 </html>
