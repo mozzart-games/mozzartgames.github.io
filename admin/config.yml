@@ -2,11 +2,9 @@ backend:
   name: git-gateway
   repo: mozzart-games/mozzartgames.github.io
   branch: main
-  # To pole mówi CMS-owi, że ma szukać bramki Git Gateway na Netlify, a nie na GitHubie
   site_domain: mozzartstore.netlify.app
 
 publish_mode: editorial_workflow
-
 media_folder: "images"
 public_folder: "/images"
 
