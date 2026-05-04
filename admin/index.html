@@ -4,34 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mozzart Games Admin</title>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <!-- Używamy konkretnej wersji biblioteki -->
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-
-  <script>
-    // Ręczne wymuszenie konfiguracji API przed startem CMS
-    const NETLIFY_SITE_URL = "https://mozzartstore.netlify.app";
-    
-    // To ustawienie nadpisuje błędne szukanie na GitHubie (404 ze zdjęcia image_4864e5.png)
-    window.localStorage.setItem('netlifySiteId', 'mozzartstore.netlify.app');
-
-    // Inicjalizacja CMS z ręcznie podanym adresem bramki
-    window.CMS_API_CONFIG = {
-      gatewayUrl: NETLIFY_SITE_URL + "/.netlify/identity"
-    };
-
-    // Obsługa widgetu logowania
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("init", user => {
-        if (!user) {
-          window.netlifyIdentity.on("login", () => {
-            document.location.href = "/admin/";
-          });
-        }
-      });
-    }
-  </script>
+  <!-- Ładujemy Sveltia CMS zamiast Decap -->
+  <script src="https://unpkg.com/sveltia-cms/dist/sveltia-cms.js" type="module"></script>
 </body>
 </html>
