@@ -1,26 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="pl">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mozzart Games Admin</title>
-  <!-- Skrypt logowania Netlify -->
+  <!-- Widget logowania Netlify Identity -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
   <script>
-    // Ustawiamy poprawny adres Twojej strony na Netlify (zgodnie z ostatnim zdjęciem)
-    const NETLIFY_URL = "https://mozzartstore.netlify.app";
+    // TO JEST KLUCZOWE: Używamy nazwy mozzartstore (zgodnie z image_4877eb.png)
+    const NETLIFY_SITE = "mozzartstore.netlify.app";
 
-    // Rejestrujemy SiteID w przeglądarce
-    localStorage.setItem('netlifySiteId', 'mozzartstore.netlify.app');
+    // Wymuszamy na przeglądarce, żeby wiedziała, gdzie jest serwer logowania
+    localStorage.setItem('netlifySiteId', NETLIFY_SITE);
 
-    // Konfiguracja dla Decap CMS, aby wiedział gdzie jest backend
+    // Konfiguracja API dla Decap CMS
     window.CMS_API_CONFIG = {
-      gatewayUrl: NETLIFY_URL + "/.netlify/identity"
+      gatewayUrl: "https://" + NETLIFY_SITE + "/.netlify/identity"
     };
 
-    // Obsługa przekierowania po zalogowaniu
+    // Obsługa automatycznego przeładowania po zalogowaniu
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("init", user => {
         if (!user) {
@@ -32,7 +32,7 @@
     }
   </script>
 
-  <!-- Ładujemy CMS z wymuszonym adresem bazowym (to naprawia błędy 404) -->
+  <!-- Ładujemy CMS z atrybutem data-base-url, który naprawia błąd 404 z Twojego zdjęcia -->
   <script 
     src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"
     data-base-url="https://mozzartstore.netlify.app"
