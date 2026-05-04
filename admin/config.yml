@@ -1,9 +1,9 @@
 backend:
-  name: git-gateway # Zmiana z 'github' na 'git-gateway'
+  name: git-gateway
   repo: mozzart-games/mozzartgames.github.io
   branch: main
+  site_domain: mozzartgames.netlify.app # To pozwala na logowanie przez GitHub Pages
 
-# Ustawienia Identity
 publish_mode: editorial_workflow
 
 media_folder: "images"
