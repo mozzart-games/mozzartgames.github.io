@@ -1,42 +1,18 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mozzart Games Admin</title>
-
-  <!-- 1. Ładujemy widget Netlify Identity do logowania -->
+  <!-- Skrypt Identity ładowany jako pierwszy -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
-  <script>
-    /** 
-     * 2. KONFIGURACJA DLA GITHUB PAGES
-     * Ponieważ Twoja strona jest na GitHubie, a CMS na Netlify, 
-     * musimy wymusić na skryptach, aby szukały ustawień pod właściwym adresem.
-     */
-    
-    // Podaj tutaj swoją nazwę strony z Netlify (widoczną na image_4ab35c.png)
-    const NETLIFY_SITE_URL = "mozzartgames.netlify.app";
-
-    // Ustawiamy SiteID w pamięci przeglądarki, aby widget Identity wiedział gdzie się łączyć
-    window.localStorage.setItem('netlifySiteId', NETLIFY_SITE_URL);
-
-    // Konfigurujemy API CMS-a, aby zapytania o ustawienia nie kończyły się błędem 404 (image_495277.png)
-    window.CMS_API_CONFIG = {
-      gatewayUrl: `https://${NETLIFY_SITE_URL}/.netlify/identity`
-    };
-  </script>
 </head>
 <body>
-  <!-- 3. Ładujemy główny skrypt panelu Decap CMS -->
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-
   <script>
-    /**
-     * 4. OBSŁUGA LOGOWANIA
-     * Ten skrypt sprawi, że po kliknięciu "Login" lub w link w mailu potwierdzającym,
-     * strona automatycznie przeładuje panel administracyjny.
-     */
+    // 1. Wymuszenie Site ID w pamięci lokalnej
+    localStorage.setItem('netlifySiteId', 'mozzartgames.netlify.app');
+
+    // 2. Obsługa logowania i przekierowań
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("init", user => {
         if (!user) {
@@ -47,5 +23,11 @@
       });
     }
   </script>
+
+  <!-- 3. GŁÓWNA ZMIANA: Dodajemy atrybut data-base-url do skryptu CMS -->
+  <script 
+    src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"
+    data-base-url="https://mozzartgames.netlify.app"
+  ></script>
 </body>
 </html>
