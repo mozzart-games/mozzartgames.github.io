@@ -4,15 +4,23 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mozzart Games Admin</title>
-  <!-- Skrypt Identity ładowany jako pierwszy -->
+  <!-- Skrypt logowania Netlify -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
   <script>
-    // 1. Wymuszenie Site ID w pamięci lokalnej
-    localStorage.setItem('netlifySiteId', 'mozzartgames.netlify.app');
+    // Ustawiamy poprawny adres Twojej strony na Netlify (zgodnie z ostatnim zdjęciem)
+    const NETLIFY_URL = "https://mozzartstore.netlify.app";
 
-    // 2. Obsługa logowania i przekierowań
+    // Rejestrujemy SiteID w przeglądarce
+    localStorage.setItem('netlifySiteId', 'mozzartstore.netlify.app');
+
+    // Konfiguracja dla Decap CMS, aby wiedział gdzie jest backend
+    window.CMS_API_CONFIG = {
+      gatewayUrl: NETLIFY_URL + "/.netlify/identity"
+    };
+
+    // Obsługa przekierowania po zalogowaniu
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("init", user => {
         if (!user) {
@@ -24,10 +32,10 @@
     }
   </script>
 
-  <!-- 3. GŁÓWNA ZMIANA: Dodajemy atrybut data-base-url do skryptu CMS -->
+  <!-- Ładujemy CMS z wymuszonym adresem bazowym (to naprawia błędy 404) -->
   <script 
     src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"
-    data-base-url="https://mozzartgames.netlify.app"
+    data-base-url="https://mozzartstore.netlify.app"
   ></script>
 </body>
 </html>
