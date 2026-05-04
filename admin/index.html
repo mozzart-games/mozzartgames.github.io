@@ -4,22 +4,26 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mozzart Games Admin</title>
-  <!-- 1. Ładujemy widget tożsamości Netlify -->
+  <!-- Skrypt Netlify Identity -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <!-- 2. Skrypt CMS (Decap) -->
+  <!-- Skrypt CMS (Decap) -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 
   <script>
-    // 3. To sprawi, że po kliknięciu zaproszenia w mailu zostaniesz zalogowany
+    // Łączymy GitHub Pages z Netlify Identity
     if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("init", user => {
-        if (!user) {
-          window.netlifyIdentity.on("login", () => {
-            document.location.href = "/admin/";
-          });
+      // Poniższa linia rozwiązuje błąd z Twojego zdjęcia:
+      window.netlifyIdentity.on("init", () => {
+        if (!window.localStorage.getItem("netlifySiteId")) {
+          window.localStorage.setItem("netlifySiteId", "mozzartgames.netlify.app");
         }
+      });
+
+      // Przekierowanie po zalogowaniu
+      window.netlifyIdentity.on("login", () => {
+        document.location.href = "/admin/";
       });
     }
   </script>
