@@ -8,10 +8,14 @@
 </head>
 <body>
   <script>
-    // Usuwamy stare błędy autoryzacji z pamięci przeglądarki
-    localStorage.removeItem('sveltia-cms.auth.backend');
-    localStorage.removeItem('sveltia-cms.user');
+    // Całkowite odcięcie Netlify
     window.netlifyIdentity = null;
+    
+    // Blokada otwierania okienek - to wymusi pole na token bezpośrednio w panelu
+    window.open = function() {
+        console.log("Zablokowano wyskakujące okno logowania. Wpisz token w polu na stronie.");
+        return null;
+    };
   </script>
   <script src="https://cdn.jsdelivr.net/npm/@sveltia/cms@0.39.0/dist/sveltia-cms.js" type="module"></script>
 </body>

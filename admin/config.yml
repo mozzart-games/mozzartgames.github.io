@@ -2,8 +2,8 @@ backend:
   name: github
   repo: mozzart-games/mozzartgames.github.io
   branch: main
-  # Zmieniamy na 'token' - to najprostsza metoda dla Sveltia CMS
-  auth_type: token
+  # To jest najważniejsza zmiana:
+  auth_type: implicit
 
 media_folder: "images"
 public_folder: "/images"
