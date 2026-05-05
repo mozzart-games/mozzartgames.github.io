@@ -2,8 +2,6 @@ backend:
   name: github
   repo: mozzart-games/mozzartgames.github.io
   branch: main
-  # To wymusza prośbę o token zamiast otwierania okna:
-  auth_type: implicit
 
 media_folder: "images"
 public_folder: "/images"
