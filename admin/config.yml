@@ -2,6 +2,8 @@ backend:
   name: github
   repo: mozzart-games/mozzartgames.github.io
   branch: main
+  # Ta linia jest teraz najważniejsza:
+  use_local_git: true
 
 media_folder: "images"
 public_folder: "/images"
