@@ -2,8 +2,8 @@ backend:
   name: github
   repo: mozzart-games/mozzartgames.github.io
   branch: main
-  # Ta linia jest teraz najważniejsza:
-  use_local_git: true
+  # Ta linia jest kluczowa, aby przestało wyskakiwać okno Netlify:
+  site_id: localhost 
 
 media_folder: "images"
 public_folder: "/images"
