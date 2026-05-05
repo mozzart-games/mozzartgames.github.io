@@ -2,9 +2,8 @@ backend:
   name: github
   repo: mozzart-games/mozzartgames.github.io
   branch: main
-  # To wyłączy błąd z obrazka image_10ebde.png:
-  auth_type: proxy
-  proxy_url: http://localhost:8080 
+  # Zmieniamy na 'token' - to najprostsza metoda dla Sveltia CMS
+  auth_type: token
 
 media_folder: "images"
 public_folder: "/images"
